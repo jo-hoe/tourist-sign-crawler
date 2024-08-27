@@ -11,8 +11,8 @@ init: venv update-dependencies ## inital setup of project
 venv:
 	python -m venv ${ROOT_DIR}.venv
 
-.PHONY: update-dependencies
-update-dependencies: ## install all dependencies
+.PHONY: update
+update: ## install all dependencies
 	git pull
 	${ROOT_DIR}.venv/Scripts/pip install -r requirements.txt
 
