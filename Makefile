@@ -18,7 +18,7 @@ update: ## install all dependencies
 
 .PHONY: save-dependencies
 save-dependencies: ## save current dependencies
-	${ROOT_DIR}.venv/Scripts/pip freeze > requirements.txt
+	"${ROOT_DIR}.venv/Scripts/pip" list --not-required --format=freeze | grep -v "pip" > ${ROOT_DIR}requirements.txt
 	
 .PHONY: start 
 start: ## start crawler
