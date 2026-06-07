@@ -5,7 +5,7 @@ ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 .DEFAULT_GOAL := start
 
 .PHONY: init 
-init: venv update-dependencies ## inital setup of project
+init: venv update ## inital setup of project
 
 .PHONY: venv
 venv:
@@ -20,6 +20,10 @@ update: ## install all dependencies
 save-dependencies: ## save current dependencies
 	"${ROOT_DIR}.venv/Scripts/pip" list --not-required --format=freeze | grep -v "pip" > ${ROOT_DIR}requirements.txt
 	
-.PHONY: start 
+.PHONY: test
+test: ## run tests
+	${ROOT_DIR}.venv/Scripts/python -m pytest ${ROOT_DIR}test
+
+.PHONY: start
 start: ## start crawler
 	@${ROOT_DIR}.venv/Scripts/python ${ROOT_DIR}main.py

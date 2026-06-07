@@ -3,6 +3,7 @@
 [![Test Status](https://github.com/jo-hoe/tourist-sign-crawler/workflows/tests/badge.svg)](https://github.com/jo-hoe/tourist-sign-crawler/actions?workflow=tests)
 
 Crawls Wikipedia to find tourist signs (in German "Unterrichtstafeln") for famous tourist attractions alongside the Autobahn in Germany.
+These signs are on a brown background with white text and an image of the sight.
 Afterwards the script tries to find the longitude and latitude of the sights using Wikipedia and openstreetmap.
 
 Some of the sights cannot associated with location data, these item will be logged to stdout and will not be part of the final output.
