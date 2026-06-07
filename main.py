@@ -1,10 +1,17 @@
 import argparse
+import logging
+import sys
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from src import sight_crawler
 from src.openstreetmap import RateLimiter, _DEFAULT_RATE_LIMIT, get_coordinates
 from src.sight import Sight, export_sights_to_csv
 from src.wiki_location_crawler import get_location_from_wiki
+
+
+def _configure_logging() -> None:
+    handler = logging.StreamHandler(stream=open(sys.stderr.fileno(), mode="w", encoding="utf-8", closefd=False))
+    logging.basicConfig(handlers=[handler], level=logging.WARNING)
 
 
 def _set_location_for_item(item: Sight, rate_limiter: RateLimiter | None) -> None:
@@ -35,6 +42,7 @@ def _parse_args() -> argparse.Namespace:
 
 
 def main(args: argparse.Namespace) -> None:
+    _configure_logging()
     rate_limiter = None if args.no_rate_limit else RateLimiter(_DEFAULT_RATE_LIMIT)
 
     items = sight_crawler.get_sights()
