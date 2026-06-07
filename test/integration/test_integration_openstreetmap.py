@@ -11,7 +11,7 @@ class TestIntegrationOpenStreetMap(unittest.TestCase):
         if self.is_on_github_actions():
             self.skipTest("Skipping test on GitHub Actions")
 
-        latitude, longitude = get_coordinates(self.TEST_LOCATION)
+        latitude, longitude = get_coordinates(self.TEST_LOCATION, rate_limiter=None)
 
         self.assertAlmostEqual(latitude, 54.2976194)
         self.assertAlmostEqual(longitude, 10.8828391)

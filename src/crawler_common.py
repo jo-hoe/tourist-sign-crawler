@@ -4,7 +4,10 @@ from urllib.request import urlopen, Request
 from xml.etree import ElementTree
 from lxml import etree
 
-_HEADERS = {"User-Agent": "tourist-sign-crawler/1.0 (https://github.com/jo-hoe/tourist-sign-crawler; bot) Python-urllib/3"}
+# User-Agent policy: https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy
+_APP_UA = "tourist-sign-crawler/1.0 (https://github.com/jo-hoe/tourist-sign-crawler; bot)"
+
+_HEADERS = {"User-Agent": f"{_APP_UA} Python-urllib/3"}
 
 
 @cache
